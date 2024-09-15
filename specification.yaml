@@ -1,0 +1,162 @@
+openapi: 3.0.1
+info:
+  title: Joke, Cat, Number Fact API
+  description: API для получения шуток, информации о котах и фактов о числах.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Локальный сервер для разработки
+paths:
+  /api/v1/joke:
+    post:
+      summary: Получить шутку
+      responses:
+        '200':
+          description: Успешное получение шутки
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  joke:
+                    type: string
+                  id:
+                    type: integer
+        '500':
+          description: Ошибка на стороне сервера
+  /api/v1/jokes:
+    post:
+      summary: Получить все шутки из базы данных
+      responses:
+        '200':
+          description: Успешное получение всех шуток
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jokes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        category:
+                          type: string
+                        joke:
+                          type: string
+        '500':
+          description: Ошибка на стороне сервера
+  /api/v1/cat:
+    post:
+      summary: Получить картинку кота
+      responses:
+        '200':
+          description: Успешное получение кота
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cat_id:
+                    type: string
+                  url:
+                    type: string
+        '500':
+          description: Ошибка на стороне сервера
+  /api/v1/cats:
+    post:
+      summary: Получить всех котов из базы данных
+      responses:
+        '200':
+          description: Успешное получение всех котов
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cats:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        url:
+                          type: string
+        '500':
+          description: Ошибка на стороне сервера
+  /api/v1/fact:
+    post:
+      summary: Получить факт о числе
+      parameters:
+        - in: query
+          name: number
+          schema:
+            type: string
+          required: true
+          description: Число для получения факта
+      responses:
+        '200':
+          description: Успешное получение факта
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Ошибка на стороне сервера
+  /api/v1/facts:
+    post:
+      summary: Получить все факты о числах из базы данных
+      responses:
+        '200':
+          description: Успешное получение всех фактов о числах
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    fact:
+                      type: string
+        '500':
+          description: Ошибка на стороне сервера
+  /api/v1/news:
+    post:
+      summary: Получить заголовки новостей с Hacker News
+      responses:
+        '200':
+          description: Успешное получение новостей
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '500':
+          description: Ошибка на стороне сервера
+  /api/v1/quotes:
+    post:
+      summary: Получить цитаты
+      responses:
+        '200':
+          description: Успешное получение цитат
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                    author:
+                      type: string
+        '500':
+          description: Ошибка на стороне сервера

@@ -1,0 +1,15 @@
+server:
+  url: "0.0.0.0:8080"
+
+database:
+  user: user
+  password: password
+  host: 172.17.0.1
+  port: 5432
+  db_name: labs
+  ssl_mode: disable
+  migrations_path: migrations
+
+logger:
+  sink: stdout
+  level: debug
